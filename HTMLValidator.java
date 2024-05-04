@@ -1,7 +1,5 @@
 package trabalho;
 
-import pilha.PilhaLista;
-
 public class HTMLValidator {
 
     private static final String[] SINGLETON_TAGS = {
@@ -9,10 +7,10 @@ public class HTMLValidator {
             "img", "input", "link", "param", "source", "!doctype"
     };
 
-    public static void readHtmlLine(String line, ListaEstatica listaEstatica, PilhaLista<Tag> pilhaLista) {
+    public static void readHtmlLine(String line, ListaEstatica listaEstatica, PilhaLista pilhaLista) {
         // Ignora as linhas em branco
         if (isLineEmpty(line)) return;
-        String[] parts = line.split("<");
+        String[] parts = line.split("<"); // TODO: 04/05/2024 testar com mais cuidado esse cenário, pode ser que haja algum texto com "<" por exemplo.
         // Divide a linha em partes
         for (String part : parts) {
             if (!part.contains(">")) {
@@ -38,6 +36,7 @@ public class HTMLValidator {
                 } else {
                     // TODO: Fazer mensagens customizadas para cada tag com erro.
                     // TODO: Validar se caso não está igual a tag
+                    throw new TagFinalInesperadaException("Tag final inexperada! Era experado a tag final para a tag " + tag.getValue() + ", porém foi encontrada a tag " + lastTag.getValue() + ".");
                 }
             }
         }

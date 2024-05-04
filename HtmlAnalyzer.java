@@ -49,17 +49,20 @@ public class HtmlAnalyzer {
             @Override
             public void actionPerformed(ActionEvent e) {
                 tableModel.setRowCount(0);
+                largeTextArea.setText("");
 
                 String text = textArea.getText();
                 HTMLReader reader = new HTMLReader();
-                ListaEstatica lista = reader.validateHtmlFile(text);
-
-                for (int i = 0; i < lista.getTamanho(); i++) {
-                    Object[] rowData = {lista.getInfo()[i].getValue(), lista.getInfo()[i].getQuantidade()};
-                    tableModel.addRow(rowData);
+                try {
+                    ListaEstatica lista = reader.validateHtmlFile(text);
+                    for (int i = 0; i < lista.getTamanho(); i++) {
+                        Object[] rowData = {lista.getInfo()[i].getValue(), lista.getInfo()[i].getQuantidade()};
+                        tableModel.addRow(rowData);
+                    }
+                    largeTextArea.append("O arquivo está bem formatado");
+                } catch (Exception exception) {
+                    largeTextArea.append(exception.getMessage());
                 }
-
-
                 table.revalidate();
                 table.repaint();
             }

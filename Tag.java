@@ -48,8 +48,16 @@ public class Tag {
 
     }
 
-
     public String getValue() {
         return value;
+    }
+
+    public String getTagFinal() {
+        return "</" + this.value + ">";
+    }
+
+    @Override
+    public String toString() {
+        return this.tag;
     }
 }
