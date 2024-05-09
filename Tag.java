@@ -8,7 +8,6 @@ public class Tag {
 
     private int quantidade;
 
-
     private String value;
 
     public String getTag() {

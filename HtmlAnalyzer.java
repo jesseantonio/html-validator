@@ -54,7 +54,7 @@ public class HtmlAnalyzer {
                 String text = textArea.getText();
                 HTMLReader reader = new HTMLReader();
                 try {
-                    ListaEstatica lista = reader.validateHtmlFile(text);
+                    ListaEstatica lista = reader.validaArquivoHtml(text);
                     for (int i = 0; i < lista.getTamanho(); i++) {
                         Object[] rowData = {lista.getInfo()[i].getValue(), lista.getInfo()[i].getQuantidade()};
                         tableModel.addRow(rowData);

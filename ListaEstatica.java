@@ -7,7 +7,6 @@ public class ListaEstatica {
     public Tag[] getInfo() {
         return info;
     }
-
     private Tag[] info;
     private int tamanho;
 
@@ -52,29 +51,12 @@ public class ListaEstatica {
         return -1;
     }
 
-    public void retirar(Tag valor) {
-        int valorIdx = buscar(valor);
-        for (int i = valorIdx + 1; i < tamanho; i++) {
-            info[i - 1] = info[i];
-        }
-        tamanho--;
-    }
-
     public Tag obterElemento(int posicao) {
         if (posicao >= 0 && (posicao < getTamanho())) {
             return info[posicao];
         } else {
             throw new IndexOutOfBoundsException();
         }
-    }
-
-    public boolean estaVazia() {
-        return getTamanho() == 0;
-    }
-
-    public void liberar() {
-        this.info = new Tag[10];
-        this.tamanho = 0;
     }
 
     @Override
@@ -90,4 +72,16 @@ public class ListaEstatica {
         return valorConcatenado;
     }
 
+    public void ordenarAlfabeticamente() {
+        for (int i = 0; i < getTamanho() - 1; i++) {
+            for (int j = 0; j < getTamanho() - i - 1; j++) {
+                if (info[j].getValue().compareTo(info[j + 1].getValue()) > 0) {
+                    Tag temp = info[j];
+                    info[j] = info[j + 1];
+                    info[j + 1] = temp;
+                }
+            }
+        }
+    }
 }
+

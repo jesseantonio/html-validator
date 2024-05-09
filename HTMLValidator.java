@@ -9,20 +9,20 @@ public class HTMLValidator {
 
     public static void readHtmlLine(String line, ListaEstatica listaEstatica, PilhaLista pilhaLista) {
         // Ignora as linhas em branco
-        if (isLineEmpty(line)) return;
-        String[] parts = line.split("<"); // TODO: 04/05/2024 testar com mais cuidado esse cenário, pode ser que haja algum texto com "<" por exemplo.
+        if (verificaLinhaVazia(line)) return;
+        String[] partes = line.split("<"); // TODO: 04/05/2024 testar com mais cuidado esse cenário, pode ser que haja algum texto com "<" por exemplo.
         // Divide a linha em partes
-        for (String part : parts) {
-            if (!part.contains(">")) {
+        for (String parte : partes) {
+            if (!parte.contains(">")) {
                 continue;
             }
             // Pega somente a tag em si, Ex: <div>
-            String value = "<" + part.substring(0, part.indexOf(">") + 1);
-            Tag tag = new Tag(value);
+            String valorTag = "<" + parte.substring(0, parte.indexOf(">") + 1);
+            Tag tag = new Tag(valorTag);
             // Se não conter / significa que é uma tag de abertura
-            if (!value.contains("/")) {
+            if (!valorTag.contains("/")) {
                 listaEstatica.inserir(tag);
-                if (isSingletonTag(tag.getValue())) {
+                if (verificaSingletonTag(tag.getValue())) {
                     continue;
                 }
                 pilhaLista.push(tag);
@@ -36,7 +36,7 @@ public class HTMLValidator {
                 } else {
                     // TODO: Fazer mensagens customizadas para cada tag com erro.
                     // TODO: Validar se caso não está igual a tag
-                    throw new TagFinalInesperadaException("Tag final inexperada! Era experado a tag final para a tag " + tag.getValue() + ", porém foi encontrada a tag " + lastTag.getValue() + ".");
+                    throw new TagFinalInesperadaException("Tag final inesperada! Era esperado a tag final para a tag " + tag.getValue() + ", porém foi encontrada a tag " + lastTag.getValue() + ".");
                 }
             }
         }
@@ -48,7 +48,7 @@ public class HTMLValidator {
      * @param line - Linha
      * @return true se estiver vaiza, false caso contrário.
      */
-    private static boolean isLineEmpty(String line) {
+    private static boolean verificaLinhaVazia(String line) {
         return line.trim().isEmpty();
     }
 
@@ -59,7 +59,7 @@ public class HTMLValidator {
      * @param tagName O nome da tag a ser verificada
      * @return true se for uma singleton tag, false caso contrário
      */
-    private static boolean isSingletonTag(String tagName) {
+    private static boolean verificaSingletonTag(String tagName) {
         String lowerCaseTag = tagName.toLowerCase();
         for (String tag : SINGLETON_TAGS) {
             if (tag.equals(lowerCaseTag)) {

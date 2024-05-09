@@ -20,24 +20,6 @@ public class ListaEncadeada {
         this.primeiro = novoNo;
     }
 
-    public boolean estaVazia() {
-        return primeiro == null;
-    }
-
-    public NoLista buscar(Tag info) {
-        NoLista p = primeiro;
-
-        while (p != null) {
-            if (p.getInfo().equals(info)) {
-                return p;
-            }
-            p = p.getProximo();
-        }
-
-        return null;
-    }
-
-
     public void retirar(Tag info) {
         NoLista anterior = this.primeiro;
         NoLista p = this.primeiro;
@@ -55,20 +37,5 @@ public class ListaEncadeada {
             }
         }
     }
-
-    @Override
-    public String toString() {
-        NoLista p = primeiro;
-        String valorConcatenado = "";
-        while (p != null) {
-            if (p != primeiro) {
-                valorConcatenado += ", ";
-            }
-            valorConcatenado += p.getInfo().toString();
-            p = p.getProximo();
-        }
-        return valorConcatenado;
-    }
-
 
 }
