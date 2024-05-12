@@ -31,20 +31,20 @@ public class ListaEstatica {
         if (info.length == getTamanho()) {
             redimensionar();
         }
-        int index = buscar(valor);
+        int index = buscar(valor.getValue());
         if (index != -1) {
             Tag tag = obterElemento(index);
             tag.aumentaQuantidade();
             this.info[index] = tag;
-        } else  {
+        } else {
             this.info[getTamanho()] = valor;
             tamanho++;
         }
     }
 
-    public int buscar(Tag valor) {
+    public int buscar(String valor) {
         for (int i = 0; i < getTamanho(); i++) {
-            if (Objects.equals(this.info[i].getTag(), valor.getTag())) {
+            if (Objects.equals(this.info[i].getValue(), valor)) {
                 return i;
             }
         }
