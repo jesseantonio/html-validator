@@ -31,7 +31,7 @@ public class ListaEstatica {
         if (info.length == getTamanho()) {
             redimensionar();
         }
-        int index = buscar(valor.getValue());
+        int index = buscar(valor.getValor());
         if (index != -1) {
             Tag tag = obterElemento(index);
             tag.aumentaQuantidade();
@@ -44,7 +44,7 @@ public class ListaEstatica {
 
     public int buscar(String valor) {
         for (int i = 0; i < getTamanho(); i++) {
-            if (Objects.equals(this.info[i].getValue(), valor)) {
+            if (Objects.equals(this.info[i].getValor(), valor)) {
                 return i;
             }
         }
