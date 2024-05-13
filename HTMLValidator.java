@@ -10,7 +10,7 @@ public class HTMLValidator {
     public static void readHtmlLine(String line, ListaEstatica listaEstatica, PilhaLista pilhaLista) {
         // Ignora as linhas em branco
         if (verificaLinhaVazia(line)) return;
-        String[] partes = line.split("<"); // TODO: 04/05/2024 testar com mais cuidado esse cenário, pode ser que haja algum texto com "<" por exemplo.
+        String[] partes = line.split("<");
         // Divide a linha em partes
         for (String parte : partes) {
             if (!parte.contains(">")) {
@@ -34,8 +34,6 @@ public class HTMLValidator {
                 if (tag.getValue().equals(lastTag.getValue())) {
                     pilhaLista.pop();
                 } else {
-                    // TODO: Fazer mensagens customizadas para cada tag com erro.
-                    // TODO: Validar se caso não está igual a tag
                     throw new TagFinalInesperadaException("Tag final inesperada! Era esperado a tag final para a tag " + tag.getValue() + ", porém foi encontrada a tag " + lastTag.getValue() + ".");
                 }
             }

@@ -16,9 +16,8 @@ public class HTMLReader {
         while ((line = br.readLine()) != null) {
             HTMLValidator.readHtmlLine(line, listaEstatica, pilhaLista);
         }
-        // TODO: Rever essa parte, deixei assim pois se a pilha não está vazia significa que o arquivo não é válido e não mostra nada.
         if (!pilhaLista.estaVazia()) {
-            throw new FaltaTagFinalException("Falta tag final para alguma tag ai... Tags faltando: " + formataTagsFinais(pilhaLista) ); // TODO: 04/05/2024 aqui precioso da lista contendo as tags finais que eram esperadas mas não foram encontradas - e esse não é o lugar certo pra lançar essa exception
+            throw new FaltaTagFinalException("Falta tag final para alguma tag ai... Tags faltando: " + formataTagsFinais(pilhaLista) );
         }
         listaEstatica.ordenarAlfabeticamente();
 
