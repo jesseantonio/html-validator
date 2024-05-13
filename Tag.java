@@ -8,18 +8,18 @@ public class Tag {
 
     private int quantidade;
 
-    private String value;
+    private String valor;
+
+    private String tag;
 
     public String getTag() {
         return tag;
     }
 
-    private String tag;
-
     public Tag(String tag) {
         this.tag = tag;
         quantidade = 1;
-        this.value = setTagValue(tag);
+        this.valor = setTagValue(tag);
     }
 
     public void aumentaQuantidade() {
@@ -47,12 +47,12 @@ public class Tag {
 
     }
 
-    public String getValue() {
-        return value;
+    public String getValor() {
+        return valor;
     }
 
     public String getTagFinal() {
-        return "</" + this.value + ">";
+        return "</" + this.valor + ">";
     }
 
     @Override

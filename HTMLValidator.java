@@ -22,7 +22,7 @@ public class HTMLValidator {
             // Se não conter / significa que é uma tag de abertura
             if (!valorTag.contains("/")) {
                 listaEstatica.inserir(tag);
-                if (verificaSingletonTag(tag.getValue())) {
+                if (verificaSingletonTag(tag.getValor())) {
                     continue;
                 }
                 pilhaLista.push(tag);
@@ -31,12 +31,12 @@ public class HTMLValidator {
                 Se não for o caso, não é um arquivo válido.
                 * */
                 Tag lastTag = pilhaLista.peek();
-                if (tag.getValue().equals(lastTag.getValue())) {
+                if (tag.getValor().equals(lastTag.getValor())) {
                     pilhaLista.pop();
                 } else {
                     // TODO: Fazer mensagens customizadas para cada tag com erro.
                     // TODO: Validar se caso não está igual a tag
-                    throw new TagFinalInesperadaException("Tag final inesperada! Era esperado a tag final para a tag " + tag.getValue() + ", porém foi encontrada a tag " + lastTag.getValue() + ".");
+                    throw new TagFinalInesperadaException("Tag final inesperada! Era esperado a tag final para a tag " + tag.getValor() + ", porém foi encontrada a tag " + lastTag.getValor() + ".");
                 }
             }
         }

@@ -56,7 +56,7 @@ public class HtmlAnalyzer {
                 try {
                     ListaEstatica lista = reader.validaArquivoHtml(text);
                     for (int i = 0; i < lista.getTamanho(); i++) {
-                        Object[] rowData = {lista.getInfo()[i].getValue(), lista.getInfo()[i].getQuantidade()};
+                        Object[] rowData = {lista.getInfo()[i].getValor(), lista.getInfo()[i].getQuantidade()};
                         tableModel.addRow(rowData);
                     }
                     largeTextArea.append("O arquivo está bem formatado");

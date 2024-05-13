@@ -3,12 +3,12 @@ package trabalho;
 import java.util.Objects;
 
 public class ListaEstatica {
+    private Tag[] info;
+    private int tamanho;
 
     public Tag[] getInfo() {
         return info;
     }
-    private Tag[] info;
-    private int tamanho;
 
     public ListaEstatica() {
         this.info = new Tag[10];
@@ -75,7 +75,7 @@ public class ListaEstatica {
     public void ordenarAlfabeticamente() {
         for (int i = 0; i < getTamanho() - 1; i++) {
             for (int j = 0; j < getTamanho() - i - 1; j++) {
-                if (info[j].getValue().compareTo(info[j + 1].getValue()) > 0) {
+                if (info[j].getValor().compareTo(info[j + 1].getValor()) > 0) {
                     Tag temp = info[j];
                     info[j] = info[j + 1];
                     info[j + 1] = temp;
